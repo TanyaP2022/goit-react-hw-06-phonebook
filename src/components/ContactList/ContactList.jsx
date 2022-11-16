@@ -9,9 +9,14 @@ export const ContactList = () =>{
     const contactItems = useSelector(getContacts);
     const filteredItems = useSelector(getFilteredContact);
 
-  const currentContacts = contactItems.filter(element =>
-    element.name.toLowerCase().includes(filteredItems.toLowerCase())
-  );
+  // const currentContacts = contactItems.filter(element =>
+  //   element.name.toLowerCase().includes(filteredItems.toLowerCase())
+  // );
+  console.log(contactItems)
+    const currentContacts =  contactItems.filter(contact => {
+      return contact.name.toLowerCase().includes(filteredItems.toLowerCase())|| contact.number.toLowerCase().includes(filteredItems.toLowerCase());
+    });
+  // console.log(currentContacts)
   
     const elements = currentContacts.map(({ name, number, id }) => {
         return <ContactItemStyle key={id}>{name}: {number}
